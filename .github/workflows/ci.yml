@@ -26,6 +26,14 @@ jobs:
           bash -n scripts/restore.sh
           bash -n monitoring/health_check.sh
 
+      - name: Check Python syntax
+        run: |
+          python3 -m py_compile monitoring/metrics_exporter.py
+
+      - name: Validate Docker Compose configuration
+        working-directory: monitoring
+        run: docker compose config
+
       - name: Terraform format check
         working-directory: terraform
         run: terraform fmt -check

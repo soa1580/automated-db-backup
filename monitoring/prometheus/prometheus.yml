@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "postgres-backup"
+    static_configs:
+      - targets: ["backup-metrics:8000"]
